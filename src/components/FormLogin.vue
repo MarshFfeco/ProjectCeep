@@ -90,7 +90,7 @@
 </script>
 
 <template>  
-        <form class="flex flex-col gap-4 w-full max-w-xs" method="post" @submit=Login($event) action="/teste">
+        <form class="flex flex-col gap-4 w-full" method="post" @submit=Login($event) action="/teste">
             <div class="w-full flex flex-col gap-1">
                 <label>Email</label>
                 <input 
@@ -112,10 +112,12 @@
                 >
                 <span v-show="PasswordError" class="text-xs text-error">{{ PasswordError }}</span>
             </div>
+
+            <i class="text-xs self-end cursor-pointer hover:underline">Esqueceu a Senha?</i>
         
             <button 
                 type="submit"
-                class="w-full bg-indigo-500 rounded-full font-semibold text-white h-10 hover:bg-indigo-600"
+                class="w-full mt-5 bg-indigo-500 rounded-full font-semibold text-white h-10 hover:bg-indigo-600"
             >
                 Entrar
             </button>
