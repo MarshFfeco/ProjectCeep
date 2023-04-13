@@ -6,12 +6,11 @@ export default {
     './src/**/*.{vue,js,ts,jsx,tsx}'
   ],
   theme: {
-    screens: {
-      'xs': {'raw': '(min-width: 300px),(max-width: 900px)'},
-      'lg': '901px'
-
-    },
     extend: {
+      screens: {
+        'xs': '300px',
+        'lg': '900px'
+      },
       colors: {
         'error': '#E94858'
       }

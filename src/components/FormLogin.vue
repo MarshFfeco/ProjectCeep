@@ -1,6 +1,16 @@
 <script setup>
+    // import axios from "axios";
     import { ref } from 'vue';
     import { computed } from '@vue/reactivity';
+
+    // axios
+    //     .get("http://127.0.0.1:5000")
+    //     .then((res) => {
+    //             console.log(res.data)
+    //     })
+    //     .catch((error) => {
+    //             console.log(error);
+    //     });
 
     const email = ref();
     const  password = ref();
@@ -117,7 +127,7 @@
         
             <button 
                 type="submit"
-                class="w-full mt-5 bg-indigo-500 rounded-full font-semibold text-white h-10 hover:bg-indigo-600"
+                class="w-full mt-5 bg-indigo-500 rounded-full font-semibold text-white h-14 hover:bg-indigo-600"
             >
                 Entrar
             </button>
