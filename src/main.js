@@ -1,6 +1,14 @@
 import { createApp } from 'vue'
-import './assets/css/index.css'
 import App from './App.vue'
 
-createApp(App)
-.mount('#app')
+import './assets/scss/index.scss'
+
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import { PxCheck, BiInfo, BiHeartFill  } from "oh-vue-icons/icons";
+
+addIcons(PxCheck, BiInfo, BiHeartFill );
+
+const app = createApp(App)
+
+app.component('v-icon', OhVueIcon)
+app.mount('#app')

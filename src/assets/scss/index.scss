@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$title-color-purple: #7C3AED;
+
+* {
+    font-family: 'Titillium Web', sans-serif;
+    box-sizing: border-box !important;
+}

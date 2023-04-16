@@ -13,7 +13,7 @@ export default {
       },
       colors: {
         'error': '#E94858'
-      }
+      },
     },
   },
   plugins: [],
