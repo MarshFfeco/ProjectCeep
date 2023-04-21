@@ -1,43 +1,35 @@
 <script setup>
-  import Card from './components/Card.vue';
+  import Footer from './components/Footer.vue';
+  import HeaderIndex from './components/HeaderIndex.vue';
 </script>
 
-<template class="config">
-    <div class="bg">
-      <Card >
-        <template v-slot:type>
-          ALUNO
-        </template>
-      </Card>
-      <Card is-professor >
-        <template v-slot:type>
-          PROFESSOR
-        </template>
-      </Card>
-    </div>
+<template>
+  <HeaderIndex />
 
-  <footer class="w-screen text-center flex items-center justify-center">
-    <p>Made with <v-icon name="bi-heart-fill" animation="pulse" hover fill="red" /> by MarshFfeco</p>
-  </footer>
+  <div 
+    class="content"
+  >
+    <RouterView />
+  </div>
+
+  <Footer /> 
 </template>
 
 <style scoped lang="scss">
-  .config {
-    @apply w-screen max-w-full h-auto;
+  .main {
+    margin-top: 5vh;
+
+    @apply w-full h-auto;
   }
 
-  .bg {
-    height: auto;
+  .content {
+    height: 95vh;
 
-    @apply w-full flex flex-row bg-gray-50 py-8;
+    @apply w-full flex flex-row justify-center items-center;
 
     @media (max-width: 830px) {
       @apply flex-col gap-9;
     }
-  }
-
-  footer {
-    height: 5vh;
   }
 </style>
 

@@ -3,12 +3,15 @@ import App from './App.vue'
 
 import './assets/scss/index.scss'
 
+import router from './router'
+
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { PxCheck, BiInfo, BiHeartFill  } from "oh-vue-icons/icons";
+import { BiHeartFill, MdMenu, RiHome2Line, MdPersonpincircle } from "oh-vue-icons/icons";
 
-addIcons(PxCheck, BiInfo, BiHeartFill );
 
-const app = createApp(App)
+addIcons(BiHeartFill, MdMenu, RiHome2Line, MdPersonpincircle );
 
-app.component('v-icon', OhVueIcon)
-app.mount('#app')
+window.app = createApp(App)
+.component('v-icon', OhVueIcon)
+.use(router)
+.mount('#app')

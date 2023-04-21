@@ -3,14 +3,26 @@
         style: {
             type: String,
             required: true
+        },
+        url: {
+            type: String,
+            required: true 
         }
     })
 </script>
 
 <template>
-    <div :class=style>
-        <a href="#">CONTINUAR</a>
-    </div>
+    <RouterLink 
+        :to="{name: url }">
+        
+        <button 
+            :class=style
+            :click="RouterLink"
+        >
+            CONTINUAR
+        </button>
+    </RouterLink>
+    <RouterView />
 </template>
 
 <style scoped lang="scss">
