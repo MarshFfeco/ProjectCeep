@@ -9,10 +9,15 @@
     set(val) { classMenuButton.value = val }
   })
 
-  const menuItems = [
-        { name: 'About', url: '#' },
-        { name: 'Contact', url: '#' },
+  const menuItems = {
+      "links": [
+          { name: 'About', url: '#' },
+          { name: 'Contact', url: '#' },
+      ],
+      "options": [
+          { name: 'Exit', url: '#' },
       ]
+  }
 
   function SelectedButtonMenu() {
     if(ClassMenuButton.value != "") return ClassMenuButton.value = ""
@@ -52,20 +57,29 @@
     </ul>
 
 
-    <aside 
-      v-show="ClassMenuButton != ''" 
-      class="nav__hidden"
+    <Transition 
+      name="fase"
+      mode="out-in" 
     >
-      <ul class="nav__hidden__items">
-        <li
-          v-for="(item, key) in menuItems"
+      <aside 
+        v-show="ClassMenuButton != ''" 
+        class="nav__hidden"
+      >
+        <ul 
+          v-for="(items, key) in menuItems"
           :key="key"
-          class="nav__hidden__items__l"
+          class="nav__hidden__items"
         >
-          <a :href="item.url">{{ item.name }}</a>
-        </li>
-      </ul>
-    </aside>
+          <li
+            v-for="(item, key2) in items"
+            :key="key2"
+            class="nav__hidden__items__l"
+          >
+            <a :href="item.url">{{ item.name }}</a>
+          </li>
+        </ul>
+      </aside>
+    </Transition>
   </nav>
 </template>
 
@@ -102,7 +116,11 @@
 
           &__button {
             @apply
-              rounded-sm
+              transition-all
+              duration-300
+              ease-in-out
+
+              rounded-lg
                  
             bg-purple-700;
           }
@@ -123,6 +141,10 @@
 
         @apply
           absolute
+
+          transition-all
+          duration-100
+          ease-in-out
 
           top-0
           left-0
@@ -154,6 +176,10 @@
 
               &:hover {
                 @apply bg-gray-800
+              }
+
+              a {
+                @apply block w-full;
               }
             }
           }

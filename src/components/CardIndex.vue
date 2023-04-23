@@ -63,11 +63,16 @@
                 w-full
                 h-auto
 
+                mt-9
+
                 py-6
                 px-4
 
-                rounded-2xl    
-                bg-purple-700;
+                rounded-2xl
+                bg-gray-50
+                
+                shadow-lg 
+                shadow-gray-500/50;
             
             &__content {
                 @apply 
@@ -78,7 +83,7 @@
 
                 font-semibold
                 text-lg
-                text-gray-50 
+                text-purple-700 
                 leading-10;
             }
         }
@@ -86,10 +91,7 @@
         &__form {
             @apply 
                 w-full
-                h-full
-                
-                py-6
-                px-4;
+                h-80;
         }
     }
 </style>
