@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Index from '../views/IndexView.vue'
-import Student from '../views/Student.vue'
-import Professor from '../views/Professor.vue'
+import Student from '../views/StudentView.vue'
+import Professor from '../views/ProfessorView.vue'
 
 const routes = [
     {

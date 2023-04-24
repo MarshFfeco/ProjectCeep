@@ -4,7 +4,7 @@
 
 <template>
   <div 
-    class="main"
+    class="index"
   >
     <CardIndex />
   </div>
@@ -12,8 +12,12 @@
 
 <style scoped lang="scss">
 
-  .main {
-    @apply w-full h-full bg-gray-900;
+  .index {
+    min-height: 100vh;
+    margin-top: 5vh;
+  
+
+    @apply w-full bg-gray-900;
   }
 
 </style>

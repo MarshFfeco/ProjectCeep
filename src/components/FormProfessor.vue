@@ -8,30 +8,13 @@
       emits('changeIsStudent')
     }
 
-    const buttons = [
-      {
-        "id": "1",
-        "class": "formStudent__button__login",
-        "type": "submit",
-        "content": "Entrar",
-        "click": ""
-      },
-      {
-        "id": "2",
-        "class": "formStudent__button__link",
-        "type": "button",
-        "content": "Professor",
-        "click": sendEmit
-      }
-    ]
-
-    const courseCode = ref('');
-    const error = ref('')
+    const formValues = ref({"email": '', "passwd": ''});
+    const error = ref({"emailErrors": '', "passwdErrors": ''})
     const classForm = ref('formStudent__content__input acept')
-
-    const CourseCode = computed({
-        get() { return courseCode.value },
-        set(value) { courseCode.value = value }
+    
+    const FormValues = computed({
+        get() { return formValues.value },
+        set(value) { formValues.value = value }
     })
 
     const Error = computed({
@@ -91,6 +74,51 @@
 
       return isSpace;
     }
+
+    const buttons = [
+      {
+        "id": "1",
+        "class": "formStudent__button__login",
+        "type": "submit",
+        "content": "Entrar",
+        "click": ""
+      },
+      {
+        "id": "2",
+        "class": "formStudent__button__link",
+        "type": "button",
+        "content": "Estudante",
+        "click": sendEmit
+      }
+    ]
+
+    const inputs = [
+      { 
+        "id": "1",
+        "model": FormValues.value.email,
+        "place": "Digite seu email",
+        "type": "email", 
+        "name": "emailP"
+      },
+      { 
+        "id": "2",
+        "model": FormValues.value.passwd,
+        "place": "Digite sua senha",
+        "type": "password", 
+        "name": "passwdP"
+      },
+    ]
+
+    const spans = [
+      {
+        "id": "1",
+        "content": Error.value.emailErrors
+      },
+      {
+        "id": "1",
+        "content": Error.value.passwdErrors
+      },
+    ]
 </script>
 
 <template>
@@ -104,19 +132,23 @@
       class="formStudent__content"
     >       
       <input 
-        v-model="CourseCode"
-        placeholder="Digite o código"
+        v-for="input in inputs"
+        :key="input.id"
+        v-model="input.model"
+        :placeholder="input.place"
         :class="ClassForm" 
-        type="text" 
-        name="code"
+        :type="input.type" 
+        :name="input.name"
         autocomplete="off"
       >
 
       <span 
-        v-show="Error"
+        v-for="span in spans"
+        v-show="true"
+        :key="span.key"
         class="text-xs text-error px-4"
       >
-        {{ Error }}
+        {{ span.content }}
       </span>
     </div>
 
@@ -157,7 +189,7 @@
             font-semibold;
 
         &__content {
-            @apply h-1/4;
+            @apply h-1/2 flex flex-col justify-around;
 
             &__input {
                 @apply 

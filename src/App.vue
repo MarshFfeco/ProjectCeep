@@ -1,6 +1,6 @@
 <script setup>
   import Footer from './components/FooterAll.vue';
-  import HeaderIndex from './components/HeaderIndex.vue';
+  import HeaderIndex from './components/HeaderAll.vue';
 </script>
 
 <template>
@@ -15,16 +15,8 @@
   <Footer /> 
 </template>
 
-<style scoped lang="scss">
-  /* .main {
-    margin-top: 5vh;
-
-    @apply w-full h-auto;
-  } */
-
-  .content {
-    height: 90vh;
-    padding-top: 5vh;
+<style scoped lang="scss">  .content {
+    min-height: 100vh;
 
     @apply w-full flex flex-row justify-center items-center;
 

@@ -88,7 +88,9 @@
     height: 5vh;
 
     @apply 
-      w-full
+      w-screen
+
+      z-50
 
       fixed
 

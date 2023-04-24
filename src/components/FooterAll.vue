@@ -15,6 +15,6 @@
     .footer {
         height: 10vh;
 
-        @apply w-full text-center flex items-center justify-center;
+        @apply w-full text-center flex items-center justify-center bg-gray-50;
     }
 </style>
