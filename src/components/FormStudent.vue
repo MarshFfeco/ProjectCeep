@@ -150,48 +150,43 @@
             w-full
             h-full
 
-            flex
-            flex-col
-            justify-evenly
+            grid
+            grid-rows-2
             
             font-semibold;
 
         &__content {
-            @apply h-1/4;
-
+          @apply self-center;
+          
             &__input {
                 @apply 
-                    w-full
+                  w-full
 
-                    border-b-2 
-                    appearance-none 
-                    focus:outline-none
+                  border-b-2 
+                  appearance-none 
+                  focus:outline-none
 
-                    bg-transparent 
+                  bg-transparent 
 
-                    py-2 
-                    px-3 
-                    
-                    text-gray-900 
-                    leading-tight;
+                  py-2 
+                  px-3 
+                  
+                  text-gray-900 
+                  leading-tight;
             }
         }
 
         &__button {
-          @apply 
-            h-1/2
+            @apply 
 
-            flex
-            flex-col
-            justify-evenly
-            gap-2;
+              flex
+              flex-col
+              gap-2; 
 
           button {
             @apply  
               cursor-pointer 
               transition-colors 
-
-              w-full
               
               text-center 
               font-bold 

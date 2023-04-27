@@ -10,7 +10,7 @@
 
     const formValues = ref({"email": '', "passwd": ''});
     const error = ref({"emailErrors": '', "passwdErrors": ''})
-    const classForm = ref('formStudent__content__input acept')
+    const classForm = ref('formProfessor__content__input acept')
     
     const FormValues = computed({
         get() { return formValues.value },
@@ -29,13 +29,18 @@
 
     function submitForm(event) {
       let isContinue = false;
-      Error.value = ''
+      Error.value.emailErrors = ''
+      Error.value.passwdErrors = ''
 
       event.preventDefault()
 
-      isContinue = IsNotEmpty() && IsMinLength(8) && IsNotSpace()
+      let isEmpy = IsNotEmpty()
+      let isMinLen = IsMinLength(8)
+      let IsNotSpa = IsNotSpace()
 
-      ClassForm.value = Error.value == '' ? "formStudent__content__input acept" : "formStudent__content__input error"
+      isContinue = isEmpy && isMinLen && IsNotSpa
+
+      ClassForm.value = Error.value == '' ? "formProfessor__content__input acept" : "formProfessor__content__input error"
 
       if(isContinue) {
         console.log("Login Feito")
@@ -45,31 +50,43 @@
     function IsNotEmpty() {
       let isEmpty = true;
 
-      if(CourseCode.value == '') {
+      if(FormValues.value.email == '') {
         isEmpty = false
-        Error.value = "Digite um código"
+        Error.value.emailErrors = "Digite seu email"
+      }
+
+      if(FormValues.value.passwd == '') {
+        isEmpty = false
+        Error.value.passwdErrors = "Digite sua senha"
       }
 
       return isEmpty
     }
 
     function IsMinLength(num) {
+      if(Error.value.passwdErrors) return
       let isMinLenght = true;
 
-      if(CourseCode.value.length != num) {
+      if(FormValues.value.passwd.length != num) {
         isMinLenght = false
-        Error.value = "Código muinto pequeno ou muinto longo"
+        Error.value.passwdErrors = "Senha muito curta ou muito comprida"
       }
 
       return isMinLenght
     }
 
     function IsNotSpace() {
+      if(Error.value.emailErrors || Error.value.passwdErrors) return
       let isSpace = true;
 
-      if(CourseCode.value.indexOf(' ') >= 0) {
+      if(FormValues.value.email.indexOf(' ') >= 0) {
         isSpace = false;
-        Error.value = "Código possui espaço"
+        Error.value.emailErrors = "Email possui espaço"
+      }
+
+      if(FormValues.value.passwd.indexOf(' ') >= 0) {
+        isSpace = false;
+        Error.value.passwdErrors = "Senha possui espaço"
       }
 
       return isSpace;
@@ -78,82 +95,70 @@
     const buttons = [
       {
         "id": "1",
-        "class": "formStudent__button__login",
+        "class": "formProfessor__button__link",
         "type": "submit",
         "content": "Entrar",
         "click": ""
       },
       {
         "id": "2",
-        "class": "formStudent__button__link",
+        "class": "formProfessor__button__login",
         "type": "button",
         "content": "Estudante",
         "click": sendEmit
       }
     ]
-
-    const inputs = [
-      { 
-        "id": "1",
-        "model": FormValues.value.email,
-        "place": "Digite seu email",
-        "type": "email", 
-        "name": "emailP"
-      },
-      { 
-        "id": "2",
-        "model": FormValues.value.passwd,
-        "place": "Digite sua senha",
-        "type": "password", 
-        "name": "passwdP"
-      },
-    ]
-
-    const spans = [
-      {
-        "id": "1",
-        "content": Error.value.emailErrors
-      },
-      {
-        "id": "1",
-        "content": Error.value.passwdErrors
-      },
-    ]
 </script>
 
 <template>
   <form 
-    class="formStudent" 
+    class="formProfessor" 
     method="post"
     action="/"
     @submit="submitForm($event)"
   >
     <div 
-      class="formStudent__content"
+      class="formProfessor__content"
     >       
       <input 
-        v-for="input in inputs"
-        :key="input.id"
-        v-model="input.model"
-        :placeholder="input.place"
-        :class="ClassForm" 
-        :type="input.type" 
-        :name="input.name"
+        v-model="FormValues.email"
+        placeholder="Digite seu email"
+        :class="ClassForm"
+        type="email" 
+        name="email" 
         autocomplete="off"
       >
 
       <span 
-        v-for="span in spans"
-        v-show="true"
-        :key="span.key"
+        v-show="Error.emailErrors"
         class="text-xs text-error px-4"
       >
-        {{ span.content }}
+        {{ Error.emailErrors }}
       </span>
     </div>
 
     <div 
-      class="formStudent__button"
+      class="formProfessor__content"
+    >       
+      <input 
+        v-model="FormValues.passwd"
+        placeholder="Digite ua senha"
+        :class="ClassForm"
+        type="password" 
+        name="passwd" 
+        autocomplete="off"
+      >
+
+      <span 
+        v-show="Error.passwdErrors"
+        class="text-xs text-error px-4"
+      >
+        {{ Error.passwdErrors }}
+      </span>
+    </div>
+
+    <div 
+      class="formProfessor__button"
     >
       <button 
         v-for="(button) in buttons"
@@ -177,19 +182,18 @@
         @apply border-gray-900; 
     }
 
-    .formStudent {
+    .formProfessor {
         @apply 
             w-full
             h-full
 
-            flex
-            flex-col
-            justify-evenly
+            grid
+            grid-rows-3
             
             font-semibold;
 
         &__content {
-            @apply h-1/2 flex flex-col justify-around;
+            @apply self-center;
 
             &__input {
                 @apply 
@@ -207,23 +211,23 @@
                     text-gray-900 
                     leading-tight;
             }
+
+            &:nth-child(2) {
+              @apply self-start;
+            }
         }
 
         &__button {
           @apply 
-            h-1/2
 
             flex
             flex-col
-            justify-evenly
             gap-2;
 
           button {
             @apply  
               cursor-pointer 
               transition-colors 
-
-              w-full
               
               text-center 
               font-bold 
