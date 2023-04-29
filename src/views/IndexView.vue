@@ -1,12 +1,12 @@
 <script setup>
-  import CardIndex from '../components/CardIndex.vue';
+  import OCard from '../components/organisms/Index/O-card.vue';
 </script>
 
 <template>
   <div 
     class="index"
   >
-    <CardIndex />
+    <OCard />
   </div>
 </template>
 

@@ -1,4 +1,8 @@
 <script setup>
+    import AInput from '../../atoms/Inputs/A-input.vue';
+    import AInputError from '../../atoms/Inputs/A-input-error.vue';
+    import AButton from '../../atoms/A-button.vue';
+
     import { ref } from 'vue';
     import { computed } from 'vue';
 
@@ -10,7 +14,7 @@
 
     const formValues = ref({"email": '', "passwd": ''});
     const error = ref({"emailErrors": '', "passwdErrors": ''})
-    const classForm = ref('formProfessor__content__input acept')
+    const classForm = ref('M__Professor__content__input acept')
     
     const FormValues = computed({
         get() { return formValues.value },
@@ -40,10 +44,10 @@
 
       isContinue = isEmpy && isMinLen && IsNotSpa
 
-      ClassForm.value = Error.value == '' ? "formProfessor__content__input acept" : "formProfessor__content__input error"
+      ClassForm.value = isContinue ? "M__Professor__content__input acept" : "M__Professor__content__input error"
 
       if(isContinue) {
-        console.log("Login Feito")
+        window.location.replace("/professor");
       }
     }
 
@@ -95,14 +99,14 @@
     const buttons = [
       {
         "id": "1",
-        "class": "formProfessor__button__link",
+        "class": "M__Professor__button__link",
         "type": "submit",
         "content": "Entrar",
         "click": ""
       },
       {
         "id": "2",
-        "class": "formProfessor__button__login",
+        "class": "M__Professor__button__login",
         "type": "button",
         "content": "Estudante",
         "click": sendEmit
@@ -112,150 +116,158 @@
 
 <template>
   <form 
-    class="formProfessor" 
+    class="M__Professor" 
     method="post"
     action="/"
     @submit="submitForm($event)"
   >
     <div 
-      class="formProfessor__content"
+      class="M__Professor__content"
     >       
-      <input 
+      <AInput
+        id="2" 
         v-model="FormValues.email"
         placeholder="Digite seu email"
         :class="ClassForm"
         type="email" 
         name="email" 
         autocomplete="off"
-      >
-
-      <span 
+      />
+       
+      <AInputError 
         v-show="Error.emailErrors"
         class="text-xs text-error px-4"
       >
-        {{ Error.emailErrors }}
-      </span>
+        <template #message>
+          {{ Error.emailErrors }}
+        </template>
+      </AInputError>
     </div>
 
     <div 
-      class="formProfessor__content"
+      class="M__Professor__content"
     >       
-      <input 
+      <AInput 
+        id="3"
         v-model="FormValues.passwd"
         placeholder="Digite ua senha"
         :class="ClassForm"
         type="password" 
         name="passwd" 
         autocomplete="off"
-      >
+      />
 
-      <span 
+      <AInputError 
         v-show="Error.passwdErrors"
         class="text-xs text-error px-4"
       >
-        {{ Error.passwdErrors }}
-      </span>
+        <template #message>
+          {{ Error.passwdErrors }}
+        </template>
+      </AInputError>
     </div>
 
     <div 
-      class="formProfessor__button"
+      class="M__Professor__button"
     >
-      <button 
+      <AButton 
         v-for="(button) in buttons"
         :key="button.id"
-        :class="button.class"
-        :type="button.type"
+        :b-style="button.class"
+        :b-type="button.type"
         @click="button.click"
       >
-        {{ button.content }}
-      </button>
+        <template #message>
+          {{ button.content }}
+        </template>
+      </AButton>
     </div>
   </form>
 </template>
 
 <style scoped lang="scss">
-    .error {
-        @apply border-red-700; 
-    }
+  .error {
+      @apply border-red-700; 
+  }
 
-    .acept {
-        @apply border-gray-900; 
-    }
+  .acept {
+      @apply border-gray-900; 
+  }
 
-    .formProfessor {
+  .M__Professor {
+      @apply 
+          w-full
+          h-full
+
+          grid
+          grid-rows-3
+          
+          font-semibold;
+
+      &__content {
+          &__input {
+              @apply 
+                  w-full
+
+                  border-b-2 
+                  appearance-none 
+                  focus:outline-none
+
+                  bg-transparent 
+
+                  py-2 
+                  px-3 
+                  
+                  text-gray-900 
+                  leading-tight;
+          }
+
+          &:nth-child(2) {
+            @apply self-start;
+          }
+      }
+
+      &__button {
         @apply 
-            w-full
-            h-full
 
-            grid
-            grid-rows-3
+          flex
+          flex-col
+          gap-2;
+
+        button {
+          @apply  
+            cursor-pointer 
+            transition-colors 
             
-            font-semibold;
+            text-center 
+            font-bold 
 
-        &__content {
-            @apply self-center;
+            rounded-full
 
-            &__input {
-                @apply 
-                    w-full
-
-                    border-b-2 
-                    appearance-none 
-                    focus:outline-none
-
-                    bg-transparent 
-
-                    py-2 
-                    px-3 
-                    
-                    text-gray-900 
-                    leading-tight;
-            }
-
-            &:nth-child(2) {
-              @apply self-start;
-            }
+            px-4
+            py-2
+            
+            border-solid;
         }
 
-        &__button {
+        &__login {
           @apply 
+          text-gray-50
 
-            flex
-            flex-col
-            gap-2;
+            border 
+            border-transparent 
+            bg-purple-700;
 
-          button {
-            @apply  
-              cursor-pointer 
-              transition-colors 
-              
-              text-center 
-              font-bold 
-
-              px-8
-              py-4
-              
-              border-solid;
-          }
-
-          &__login {
-            @apply 
-            text-gray-50
- 
-              border 
-              border-transparent 
-              bg-purple-700;
-
-            &:hover { @apply bg-purple-900; }
-          }
-
-          &__link {
-            @apply
-              border-2
-              border-purple-700
-              text-purple-700;
-          }
+          &:hover { @apply bg-purple-900; }
         }
-    }
+
+        &__link {
+          @apply
+            border-2
+            border-purple-700
+            text-purple-700;
+        }
+      }
+  }
 
 </style>

@@ -1,10 +1,11 @@
 <script setup>
-  import Footer from './components/FooterAll.vue';
-  import HeaderIndex from './components/HeaderAll.vue';
+  import OFooter from './components/organisms/Footer/O-footer.vue';
+
+  import ONavigation from './components/organisms/Nav/O-navigation.vue';
 </script>
 
 <template>
-  <HeaderIndex />
+  <ONavigation />
 
   <div 
     class="content"
@@ -12,10 +13,11 @@
     <RouterView />
   </div>
 
-  <Footer /> 
+  <OFooter />
 </template>
 
-<style scoped lang="scss">  .content {
+<style scoped lang="scss">  
+.content {
     min-height: 100vh;
 
     @apply w-full flex flex-row justify-center items-center;
