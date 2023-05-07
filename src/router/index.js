@@ -11,8 +11,8 @@ const routes = [
         component: Index
     },
     {
-        path: '/aluno',
-        name: 'aluno',
+        path: '/student',
+        name: 'student',
         component: Student
     },
     {

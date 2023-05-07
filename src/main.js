@@ -6,10 +6,12 @@ import './assets/scss/index.scss'
 import router from './router'
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { BiHeartFill, MdMenu, RiHome2Line, MdPersonpincircle, BiChevronDoubleDown } from "oh-vue-icons/icons";
+import { 
+  MdMenu, RiHome2Line, BiChevronDoubleDown, FaUserAlt, MdAdminpanelsettingsRound, FaCheck 
+} from "oh-vue-icons/icons";
 
 
-addIcons(BiHeartFill, MdMenu, RiHome2Line, MdPersonpincircle, BiChevronDoubleDown );
+addIcons(MdMenu, RiHome2Line, BiChevronDoubleDown, MdAdminpanelsettingsRound, FaUserAlt, FaCheck);
 
 window.app = createApp(App)
 .component('v-icon', OhVueIcon)

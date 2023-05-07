@@ -1,19 +1,38 @@
 <script setup>
-  import OFooter from './components/organisms/Footer/O-footer.vue';
+  import { ref, computed } from 'vue'
 
-  import ONavigation from './components/organisms/Nav/O-navigation.vue';
+  // import MainNavBar from "./components/Nav/main-navbar.vue"
+  import FlashMessage from './components/Flash/message/Flash-Message.vue';
+
+  const isMessage = ref(true)
+  const IsMessage = computed({
+    get() { return isMessage.value },
+    set(val) { isMessage.value = val }
+  })
+
+  function ShowMessage () { IsMessage.value = !IsMessage.value }
 </script>
 
 <template>
-  <ONavigation />
-
+  <!-- <MainNavBar /> -->
   <div 
     class="content"
   >
     <RouterView />
   </div>
 
-  <OFooter />
+  <FlashMessage 
+    v-show="IsMessage"
+    @show-message="ShowMessage"
+  >
+    <template #title>
+      Uso de Cookie
+    </template>
+    <template #message>
+      Olá! Gostaríamos de informar que nosso site utiliza cookies para melhorar sua experiência de navegação.<br>
+      Ao continuar navegando em nosso site, você concorda com o uso de cookies de acordo com nossa política de privacidade
+    </template>
+  </FlashMessage>
 </template>
 
 <style scoped lang="scss">  
@@ -21,10 +40,6 @@
     min-height: 100vh;
 
     @apply w-full flex flex-row justify-center items-center;
-
-    @media (max-width: 830px) {
-      @apply flex-col gap-9;
-    }
   }
 </style>
 

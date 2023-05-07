@@ -1,23 +1,19 @@
 <script setup>
-  import OCard from '../components/organisms/Index/O-card.vue';
+  import MainIndex from '../components/Index/main-index.vue'
 </script>
 
 <template>
   <div 
     class="index"
   >
-    <OCard />
+    <MainIndex />
   </div>
 </template>
 
 <style scoped lang="scss">
 
   .index {
-    min-height: 100vh;
-    margin-top: 5vh;
-  
-
-    @apply w-full bg-gray-900;
+    @apply w-screen h-screen px-4 pt-9 bg-gray-900;
   }
 
 </style>
