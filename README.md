@@ -6,7 +6,7 @@ Campus Virtual de uma escola
 ## Preview
 
 
-![alt text](./github/pc_1.png)
+![alt text](./github/Pc_1.png)
 ![alt text](./github/pc_2.png)
 
 
