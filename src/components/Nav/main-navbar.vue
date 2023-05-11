@@ -1,7 +1,7 @@
 <script setup>
-  import navIconMenu from './extra/nav-icon-menu.vue';
-  import navIconHome from './extra/nav-icon-home.vue';
-  import navAside from "./extra/nav-aside.vue" 
+  import navIconMenu from './widget/nav-icon-menu.vue';
+  import navIconHome from './widget/nav-icon-home.vue';
+  import navAside from "./widget/nav-aside.vue" 
 
   import { ref } from 'vue';
   import { computed } from 'vue';

@@ -1,16 +1,21 @@
 <script setup>
   import { ref, computed } from 'vue'
-
+  import { cookieStore } from './store/cookie';
   // import MainNavBar from "./components/Nav/main-navbar.vue"
   import FlashMessage from './components/Flash/message/Flash-Message.vue';
 
-  const isMessage = ref(true)
+  const store = cookieStore()
+
+  const isMessage = ref(store.isAceptCookie)
   const IsMessage = computed({
     get() { return isMessage.value },
     set(val) { isMessage.value = val }
   })
 
-  function ShowMessage () { IsMessage.value = !IsMessage.value }
+  function ShowMessage () { 
+    store.UserAceptCookie()
+    IsMessage.value = store.isAceptCookie
+  }
 </script>
 
 <template>
@@ -22,7 +27,7 @@
   </div>
 
   <FlashMessage 
-    v-show="IsMessage"
+    v-show="!IsMessage"
     @show-message="ShowMessage"
   >
     <template #title>

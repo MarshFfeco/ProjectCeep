@@ -33,7 +33,6 @@
     set(val) { erro.value = val }
   })
 
-
   function SubmitStudent() {
     let form = {
       'code': Code.value
@@ -144,7 +143,7 @@
       @show-message="ShowMessage"
     >
       <template #title>
-        Esquici o código?
+        Esqueci o código?
       </template>
       <template #message>
         Entre em contato com a cordenação ou com os professores de informática.

@@ -34,7 +34,7 @@
         items-center
 
         font-semibold
-        text-lg
+        text-xl
         leading-10;
 
         i {

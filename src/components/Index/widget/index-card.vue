@@ -55,18 +55,40 @@
       :toggle-button="ToggleButton" 
     />
 
-    <IndexCardFormS 
-      v-show="!IsProfessor"  
-      @change-is-professor="ChangeIsProfessor" 
-    />
-    <IndexCardFormP 
-      v-show="IsProfessor" 
-      @change-is-professor="ChangeIsProfessor"    
-    />
+    <Transition 
+      mode="out-in" 
+      name="StuPro"
+    >
+      <IndexCardFormP 
+        v-if="IsProfessor" 
+        @change-is-professor="ChangeIsProfessor"    
+      />
+      <IndexCardFormS 
+        v-else  
+        @change-is-professor="ChangeIsProfessor" 
+      />
+    </Transition>
   </div> 
 </template>
 
 <style scoped lang="scss">
+
+  .StuPro {
+    &-enter-active,
+    &-leace-active {
+      transition: all 0.25s ease-out;
+    }
+    &-enter-from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    &-leave-from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+
   .IndexMain__card {
     display: grid;
     grid-template-rows: 0.2fr 1fr;

@@ -1,7 +1,7 @@
 <template>
   <div class="IndexMain__title">
-    <h1> Campus Virtual CEEP</h1>
-    <p>Para os <i>Estudantes</i> e <i>Professores</i> do CEEP</p>
+    <h1> Campus Virtual</h1>
+    <p>Para os <i>Estudantes</i> e <i>Professores</i></p>
   </div>
 </template>
 

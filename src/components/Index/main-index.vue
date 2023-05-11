@@ -1,6 +1,6 @@
 <script setup>
-  import IndexTitle from "./extra/index-title.vue"
-  import IndexCard from "./extra/index-card.vue";
+  import IndexTitle from "./widget/index-title.vue"
+  import IndexCard from "./widget/index-card.vue";
 </script>
 
 <template>
@@ -14,6 +14,9 @@
 <style scoped lang="scss">
   .IndexMain {
     @apply
-      h-full;
+      h-full
+      
+      md:w-1/2
+      md:mx-auto;
   }
 </style>
