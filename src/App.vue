@@ -1,11 +1,50 @@
 <script setup>
-  import FormLogin from './components/FormLogin.vue';
+  import { ref, computed } from 'vue'
+  import { cookieStore } from './store/cookie';
+  // import MainNavBar from "./components/Nav/main-navbar.vue"
+  import FlashMessage from './components/Flash/message/Flash-Message.vue';
+
+  const store = cookieStore()
+
+  const isMessage = ref(store.isAceptCookie)
+  const IsMessage = computed({
+    get() { return isMessage.value },
+    set(val) { isMessage.value = val }
+  })
+
+  function ShowMessage () { 
+    store.UserAceptCookie()
+    IsMessage.value = store.isAceptCookie
+  }
 </script>
 
 <template>
-  <div id="Register" class="h-screen flex xs:flex-col xs:justify-center xs:items-center lg:flex-row lg:justify-around bg-zinc-950 text-zinc-300">
-    <img class="w-1/2" src="./assets/image/loginImage.png" alt="">
-    <FormLogin class="lg:h-full xs:h-1/2 xs:w-full xs:px-0.5 lg:w-1/2 flex justify-center items-center" />
+  <!-- <MainNavBar /> -->
+  <div 
+    class="content"
+  >
+    <RouterView />
   </div>
+
+  <FlashMessage 
+    v-show="!IsMessage"
+    @show-message="ShowMessage"
+  >
+    <template #title>
+      Uso de Cookie
+    </template>
+    <template #message>
+      Olá! Gostaríamos de informar que nosso site utiliza cookies para melhorar sua experiência de navegação.<br>
+      Ao continuar navegando em nosso site, você concorda com o uso de cookies de acordo com nossa política de privacidade
+    </template>
+  </FlashMessage>
 </template>
+
+<style scoped lang="scss">  
+.content {
+    min-height: 100vh;
+
+    @apply w-full flex flex-row justify-center items-center;
+  }
+</style>
 

@@ -1,0 +1,12 @@
+<template>
+  <a
+    href="/"
+    target="_self"
+  >
+    <v-icon 
+      class="text-gray-50"
+      name="ri-home-2-line"
+      scale="1.4"
+    />
+  </a>
+</template>
